@@ -26,16 +26,16 @@ targets:
     dependencies:
       - target: VitalsWatchKit
 
-  # watch App
+  # watch App(现代单目标结构:watchOS 7+ SwiftUI App 生命周期,无 extension)
   VitalsWatchKit:
-    type: application.watchapp2
+    type: application
     platform: watchOS
     sources: [Sources/Watch]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: watch.yuanqi.vitals.watchkitapp
         INFOPLIST_FILE: Sources/Watch/Info.plist
-        SDKROOT: watchos
+        TARGETED_DEVICE_FAMILY: "4"
 
 schemes:
   Vitals:
