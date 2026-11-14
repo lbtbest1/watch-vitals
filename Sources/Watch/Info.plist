@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>元气</string>
-	<key>CFBundleShortVersionString</string>
+	<string>YuanQi</string>
+	<key>CFBundleShortVersionString</key>
 	<string>0.1.0</string>
-	<key>CFBundleVersion</string>
+	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>WKApplication</key>
 	<true/>
