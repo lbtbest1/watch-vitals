@@ -9,8 +9,7 @@ options:
 settings:
   base:
     SWIFT_VERSION: "5.9"
-    CODE_SIGNING_ALLOWED: "NO"
-    CODE_SIGN_IDENTITY: ""
+    CODE_SIGN_IDENTITY: "-"
 
 targets:
   # iPhone 宿主 App(M0 空壳,照抄 HermesEnabler 双包结构以便 HermesFixGui 兼容)

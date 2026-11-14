@@ -20,7 +20,7 @@ jobs:
       - name: Show available SDKs (diagnostics)
         run: xcodebuild -showsdks | grep -Ei 'watchos|ios'
 
-      - name: Archive iPhone app (unsigned)
+      - name: Archive iPhone app (ad-hoc, re-signable)
         run: |
           set -o pipefail
           xcodebuild archive \
@@ -28,8 +28,8 @@ jobs:
             -scheme Vitals \
             -destination 'generic/platform=iOS' \
             -archivePath build/Vitals.xcarchive \
-            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
-            CODE_SIGN_ENTITLEMENTS="" AD_HOC_CODE_SIGNING_ALLOWED=YES \
+            CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=YES \
+            AD_HOC_CODE_SIGNING_ALLOWED=YES DEVELOPMENT_TEAM="" \
             | tail -40
 
       - name: Package unsigned IPA
