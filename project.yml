@@ -1,0 +1,46 @@
+# xcodegen 项目定义 — CI 上生成 .xcodeproj,本地无需 Mac
+name: VitalsWatch
+options:
+  bundleIdPrefix: watch.yuanqi.vitals
+  deploymentTarget:
+    iOS: "16.0"
+    watchOS: "9.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    CODE_SIGNING_ALLOWED: "NO"
+    CODE_SIGN_IDENTITY: ""
+
+targets:
+  # iPhone 宿主 App(M0 空壳,照抄 HermesEnabler 双包结构以便 HermesFixGui 兼容)
+  Vitals:
+    type: application
+    platform: iOS
+    sources: [Sources/Phone]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: watch.yuanqi.vitals
+        INFOPLIST_FILE: Sources/Phone/Info.plist
+        TARGETED_DEVICE_FAMILY: "1"
+    dependencies:
+      - target: VitalsWatchKit
+
+  # watch App
+  VitalsWatchKit:
+    type: application.watchapp2
+    platform: watchOS
+    sources: [Sources/Watch]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: watch.yuanqi.vitals.watchkitapp
+        INFOPLIST_FILE: Sources/Watch/Info.plist
+        SDKROOT: watchos
+
+schemes:
+  Vitals:
+    build:
+      targets:
+        Vitals: all
+    archive:
+      config: Release
